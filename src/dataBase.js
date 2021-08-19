@@ -44,24 +44,44 @@ function batalhaPokemon(id1, id2) {
     // escolher pokemons que irão se enfrentar
     const pokemon1 = pokemons[id1]
     const pokemon2 = pokemons[id2]
-    // batalha, com danos de fraquezas e resistências
-    if (pokemon1.hp != 0 && pokemon2.hp != 0) {
-        if (pokemon1.tipo == pokemon2.fraqueza) {
-            pokemon2.hp = pokemon2.hp - superEffective
-        } else if (pokemon1.tipo == pokemon2.resistencia) {
-            pokemon2.hp = pokemon2.hp - nonEffective
-        } else {
-            pokemon2.hp = pokemon2.hp - effective
+    // batalha, com danos de fraquezas e resistências, mas quem tiver a maior velocidade inicia o ataque
+    if (pokemon1.velocidade > pokemon2.velocidade) {
+        if (pokemon1.hp != 0 && pokemon2.hp != 0) {
+            if (pokemon1.tipo == pokemon2.fraqueza) {
+                pokemon2.hp = pokemon2.hp - superEffective
+            } else if (pokemon1.tipo == pokemon2.resistencia) {
+                pokemon2.hp = pokemon2.hp - nonEffective
+            } else {
+                pokemon2.hp = pokemon2.hp - effective
+            }
         }
-    }
-
-    if (pokemon2.hp != 0 && pokemon1.hp != 0) {
-        if (pokemon2.tipo == pokemon1.fraqueza) {
-            pokemon1.hp = pokemon1.hp - superEffective
-        } else if (pokemon2.tipo == pokemon1.resistencia) {
-            pokemon1.hp = pokemon1.hp - nonEffective
-        } else {
-            pokemon1.hp = pokemon1.hp - effective
+        if (pokemon2.hp != 0 && pokemon1.hp != 0) {
+            if (pokemon2.tipo == pokemon1.fraqueza) {
+                pokemon1.hp = pokemon1.hp - superEffective
+            } else if (pokemon2.tipo == pokemon1.resistencia) {
+                pokemon1.hp = pokemon1.hp - nonEffective
+            } else {
+                pokemon1.hp = pokemon1.hp - effective
+            }
+        }
+    } else {
+        if (pokemon1.hp != 0 && pokemon2.hp != 0) {
+            if (pokemon2.tipo == pokemon1.fraqueza) {
+                pokemon1.hp = pokemon1.hp - superEffective
+            } else if (pokemon2.tipo == pokemon1.resistencia) {
+                pokemon1.hp = pokemon1.hp - nonEffective
+            } else {
+                pokemon1.hp = pokemon1.hp - effective
+            }
+        }
+        if (pokemon2.hp != 0 && pokemon1.hp != 0) {
+            if (pokemon1.tipo == pokemon2.fraqueza) {
+                pokemon2.hp = pokemon2.hp - superEffective
+            } else if (pokemon1.tipo == pokemon2.resistencia) {
+                pokemon2.hp = pokemon2.hp - nonEffective
+            } else {
+                pokemon2.hp = pokemon2.hp - effective
+            }
         }
     }
 
@@ -87,6 +107,7 @@ function curarPokemon(id) {
     }
     return `${pokemon.nome}: ${pokemon.hp}`
 }
+
 
 
 module.exports = { salvarPokemon, mostrarPokemon, mostrarPokemons, atualizarPokemon, deletarPokemon, batalhaPokemon, curarPokemon }

@@ -21,6 +21,7 @@ app.post('/pokemons', (req, res) => {
         tipo: req.body.tipo,
         fraqueza: req.body.fraqueza,
         resistencia: req.body.resistencia,
+        velocidade: req.body.velocidade,
         hp: 100
     })
     res.send(pokemon)
@@ -32,6 +33,7 @@ app.put('/pokemons/:id', (req, res) => {
         tipo: req.body.tipo,
         fraqueza: req.body.fraqueza,
         resistencia: req.body.resistencia,
+        velocidade: req.body.velocidade,
         hp: 100,
         id: parseInt(req.params.id)
     })
